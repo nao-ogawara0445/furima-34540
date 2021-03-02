@@ -11,7 +11,7 @@
 |encrypted_password     |string |null: false              |       
 ### Association
 - has_many: syouhins
-- has_many: kounyuus,through: :kounyuus
+- has_many: kounyuus
 ## syouhinsテーブル
 
 |Column            |Type       |Options    |
@@ -25,18 +25,18 @@
 |nissuu_id         |integer    |null: false|
 ### Association
 - belongs_to: user
-- has_one: kounyuu  ,through: :kounyuus 
-- has_one: hassou   
+- has_one: kounyuu  
+  
 
 ## kounyuusテーブル
 
-|Column             |Type       |Options            |
-|user_id            |integer    |null: false        |
-|syouhin_id         |integer    |null: false        |
-
+|Column             |Type       |Options                      |
+|user_id            |integer    |null: false,foreign_key: true|
+|syouhin_id         |integer    |null: false,foreign_key: true|
 ### Association
 - belongs_to:syouhin
-- belongs_to user
+- belongs_to:user
+- has_one: hassous
 
 
 ## hassousテーブル
