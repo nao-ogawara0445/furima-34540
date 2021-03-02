@@ -11,7 +11,7 @@
 |encrypted_password     |string |null: false              |       
 ### Association
 
-- has_one: kounyuu
+- has_one: kounyuu,foreign_key: true
 ## syouhinsテーブル
 
 |Column            |Type       |Options    |
@@ -24,8 +24,7 @@
 |kakaku            |integer    |null: false|
 |nissuu_id         |integer    |null: false|
 ### Association
-- belongs_to: user
-- has_one: kounyuu  
+- has_one: kounyuu ,foreign_key: true 
   
 
 ## kounyuusテーブル
@@ -36,7 +35,7 @@
 ### Association
 - belongs_to:syouhin
 - belongs_to:user
-- has_one: hassous
+- has_one: hassou
 
 
 ## hassousテーブル
