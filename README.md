@@ -25,7 +25,7 @@
 |nissuu_id         |integer    |null: false|
 ### Association
 - has_one: kounyuu
-  belongs_to:user
+- belongs_to:user
 
 ## kounyuusテーブル
 
