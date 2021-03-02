@@ -2,50 +2,50 @@
 
 |Column                 |Type   |Options                  |
 |nickname               |string |null: false              |
-|name_sei               |string |null: false              |
-|name_mei               |string |null: false              |            
-|name_huri_sei          |string |null: false              |
-|name_huri_mei          |string |null: false              |
-|tanjyoubi              |date   |null: false              |
+|family_name               |string |null: false              |
+|first_name               |string |null: false              |            
+|family_name_furi         |string |null: false              |
+|first_name_furi          |string |null: false              |
+|birthday       |date   |null: false              |
 |email                  |string |null: false,unique: true |  
 |encrypted_password     |string |null: false              |       
 ### Association
-- has_meny: syouhins
-- has_meny: kounyuus
-## syouhinsテーブル
+- has_many: items
+- has_many: purchases
+## itemテーブル
 
 |Column            |Type       |Options    |
-|syouhin_name      |string     |null: false|
-|syouhin_setumei   |text       |null: false|
-|kategori_id       |integer    |null: false|
-|jyoutai_id        |integer    |null: false|
-|souryou_id        |integer    |null: false|
-|hassou_id         |integer    |null: false|
-|kakaku            |integer    |null: false|
-|nissuu_id         |integer    |null: false|
+|item_name      |string     |null: false|
+|item_exposition   |text       |null: false|
+|category_id       |integer    |null: false|
+|status_id        |integer    |null: false|
+|postage_id        |integer    |null: false|
+|shipping_id         |integer    |null: false|
+|price            |integer    |null: false|
+|days_id         |integer    |null: false|
 ### Association
-- has_one: kounyuu
+- has_one: purchase
 - belongs_to:user
 
-## kounyuusテーブル
+## purchasesテーブル
 
 |Column             |Type       |Options                      |
 |user            |references   |null: false,foreign_key: true|
-|syouhin         |references    |null: false,foreign_key: true|
+|item           |references    |null: false,foreign_key: true|
 ### Association
-- belongs_to:syouhin
+- belongs_to:item
 - belongs_to:user
-- has_one: hassou
+- has_one: sending
 
 
-## hassousテーブル
+## sendingテーブル
 |Column                 |Type       |Options    |
-|yuubin_bangou          |string     |null: false|
-|hassou_id              |references    |null: false,foreign_key: true|
-|kounyuu_mati           |string     |null: false|
-|kounyuu_banti          |string     |null: false|
-|kounyuu_tate           |string     |           |
+|postal_code          |string     |null: false|
+|postage_id              |integer    |null: false|
+|town          |string     |null: false|
+|address          |string     |null: false|
+|building           |string     |           |
 |tel                    |string     |null: false|
-
+|purchase             |references |null: false,foreign_key: true|
 ### Association
-- belongs_to: kounyuu
+- belongs_to: purchase
