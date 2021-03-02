@@ -22,7 +22,7 @@
 |postage_id        |integer    |null: false|
 |shipping_id         |integer    |null: false|
 |price            |integer    |null: false|
-|days_id         |integer    |null: false|
+|day_id         |integer    |null: false|
 ### Association
 - has_one: purchase
 - belongs_to:user
