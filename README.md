@@ -30,8 +30,8 @@
 ## kounyuusテーブル
 
 |Column             |Type       |Options                      |
-|user_id            |integer    |null: false,foreign_key: true|
-|syouhin_id         |integer    |null: false,foreign_key: true|
+|user            |references   |null: false,foreign_key: true|
+|syouhin         |references    |null: false,foreign_key: true|
 ### Association
 - belongs_to:syouhin
 - belongs_to:user
@@ -41,7 +41,7 @@
 ## hassousテーブル
 |Column                 |Type       |Options    |
 |yuubin_bangou          |string     |null: false|
-|hassou_id              |integer    |null: false|
+|hassou_id              |references    |null: false,foreign_key: true|
 |kounyuu_mati           |string     |null: false|
 |kounyuu_banti          |string     |null: false|
 |kounyuu_tate           |string     |           |
