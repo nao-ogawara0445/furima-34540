@@ -10,8 +10,8 @@
 |email                  |string |null: false,unique: true |  
 |encrypted_password     |string |null: false              |       
 ### Association
-
-- has_one: kounyuu,foreign_key: true
+- has_meny: syouhins
+- has_meny: kounyuus
 ## syouhinsテーブル
 
 |Column            |Type       |Options    |
@@ -20,12 +20,12 @@
 |kategori_id       |integer    |null: false|
 |jyoutai_id        |integer    |null: false|
 |souryou_id        |integer    |null: false|
-|hassou_moto_id    |integer    |null: false|
+|hassou_id         |integer    |null: false|
 |kakaku            |integer    |null: false|
 |nissuu_id         |integer    |null: false|
 ### Association
-- has_one: kounyuu ,foreign_key: true 
-  
+- has_one: kounyuu
+  belongs_to:user
 
 ## kounyuusテーブル
 
@@ -41,7 +41,7 @@
 ## hassousテーブル
 |Column                 |Type       |Options    |
 |yuubin_bangou          |string     |null: false|
-|kounyuu_ken_id         |integer    |null: false|
+|hassou_id              |integer    |null: false|
 |kounyuu_mati           |string     |null: false|
 |kounyuu_banti          |string     |null: false|
 |kounyuu_tate           |string     |           |
