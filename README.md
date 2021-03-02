@@ -10,8 +10,8 @@
 |email                  |string |null: false,unique: true |  
 |encrypted_password     |string |null: false              |       
 ### Association
-- has_many: syouhins
-- has_many: kounyuus
+
+- has_one: kounyuu
 ## syouhinsテーブル
 
 |Column            |Type       |Options    |
