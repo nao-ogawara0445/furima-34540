@@ -11,6 +11,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer :shipping_id
       t.integer :price  
       t.integer :day_id 
+      t.references :user ,foreign_key: true
     end
   end
 end
