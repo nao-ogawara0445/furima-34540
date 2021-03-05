@@ -1,5 +1,4 @@
 window.addEventListener('load', () => {
-  console.log("起動準備完了しました");
   const priceInput = document.getElementById("item-price");
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;
