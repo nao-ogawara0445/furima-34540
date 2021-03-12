@@ -19,12 +19,12 @@
 |item_exposition   |text       |null: false|
 |category_id       |integer    |null: false|
 |status_id        |integer    |null: false|
-|postage_id        |integer    |null: false|
-|shipping_id         |integer    |null: false|
+|shipping_id       |integer    |null: false|
+|postage_id         |integer    |null: false|
 |price            |integer    |null: false|
 |day_id         |integer    |null: false|
 ### Association
-- has_one: purchase
+- has_one :purchase
 - belongs_to:user
 
 ## purchasesテーブル
@@ -41,7 +41,7 @@
 ## sendingテーブル
 |Column                 |Type       |Options    |
 |postal_code          |string     |null: false|
-|postage_id              |integer    |null: false|
+|shipping_id               |integer    |null: false|
 |town          |string     |null: false|
 |address          |string     |null: false|
 |building           |string     |           |
