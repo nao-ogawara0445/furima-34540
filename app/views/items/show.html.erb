@@ -8,11 +8,11 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image  ,class:"item-box-img" %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
+      <% if @item.purchase %>
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
+       <% end %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -24,15 +24,16 @@
     </div>
 
     
-  <% if user_signed_in? && current_user.id == @item.user_id %>
+  <% if user_signed_in? && @item.purchase.nil? %>
+   <% if current_user.id == @item.user_id %>
     <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
     <%= link_to "削除",item_path, method: :delete, class:"item-destroy" %>
-    <% elsif user_signed_in?%>
+    <% elsif %>
     <%# 商品が売れていない場合はこちらを表示しましょう %>
-    <%= link_to "購入画面に進む", new_sending_path ,class:"item-red-btn"%>
+    <%= link_to "購入画面に進む",  item_sendings_path(@item.id) ,class:"item-red-btn"%>
     <%# //商品が売れていない場合はこちらを表示しましょう %>
-
+    <% end %>
   <% end %> 
     
 
@@ -51,11 +52,11 @@
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= @item.postage.name %></td>
+          <td class="detail-value"><%= @item.status.name %></td>
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= @item.status.name %></td>
+          <td class="detail-value"><%= @item.postage.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
