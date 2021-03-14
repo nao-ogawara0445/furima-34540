@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   before_action :purchase_items, only: [:edit, :update, :destroy]
   def index
     @items=Item.order("created_at DESC")
-    @purchases=Purchase.all
+    
   end
   def new
     @item=Item.new

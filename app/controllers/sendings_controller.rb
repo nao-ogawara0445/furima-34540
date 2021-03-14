@@ -1,26 +1,22 @@
 class SendingsController < ApplicationController
   before_action :authenticate_user!
+  before_action :item_setting
+  before_action :purchase_items_sending
   def index
- 
     @sending_form = SendingForm.new
-    @item=Item.find(params[:item_id])
-    purchase_items_sending
-    
+
   end
 
 
   def create
-    @item=Item.find(params[:item_id])
-    
+    binding.pry
     @sending_form = SendingForm.new(sending_params)
-    
     if @sending_form.valid?
       sending_item
       
       @sending_form.save
       redirect_to root_path
     else
-      @item=Item.find(params[:item_id])
       render :index
     end
   end
@@ -41,6 +37,9 @@ class SendingsController < ApplicationController
     redirect_to root_path if (current_user == @item.user )|| @item.purchase 
     
   end
-  
+
+  def item_setting
+    @item=Item.find(params[:item_id])
+  end
   
 end
