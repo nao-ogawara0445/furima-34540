@@ -23,7 +23,7 @@ class SendingsController < ApplicationController
   private
 
   def sending_params
-    params.require(:sending_form).permit(:postal_code,:shipping_id, :town,:address, :building,:tel,:purchase).merge(user_id: current_user.id,item_id: params[:item_id],token: params[:token])
+    params.require(:sending_form).permit(:postal_code,:shipping_id, :town,:address, :building,:tel).merge(user_id: current_user.id,item_id: params[:item_id],token: params[:token])
   end
   def sending_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]

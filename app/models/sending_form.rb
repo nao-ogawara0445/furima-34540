@@ -15,7 +15,7 @@ class SendingForm
   
   def save
     purchase = Purchase.create(item_id: item_id, user_id: user_id)
-    Sending.create(postal_code: postal_code, shipping_id: shipping_id, town: town, address: address, building: building,tel: tel,purchase_id: purchase.id)
+    Sending.create(postal_code: postal_code, shipping_id: shipping_id, town: town, address: address, building: building,tel: tel)
  
 
   end

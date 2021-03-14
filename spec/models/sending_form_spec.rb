@@ -2,13 +2,16 @@ require 'rails_helper'
 
 RSpec.describe SendingForm, type: :model do
   before do
-    @sending_form = FactoryBot.build(:sending_form)
-    @sending_form.user_id = FactoryBot.build(:user)
-    @sending_form.item_id = FactoryBot.build(:item)
+   
+  @user =FactoryBot.create(:user)
+  @item =FactoryBot.create(:item)
+  @sending_form = FactoryBot.build(:sending_form,user_id: @user.id,item_id: @item.id)
+  sleep 0.1
   end
 
   context '購入に成功する時' do
     it "必須項目があれば購入できる" do
+     
       expect(@sending_form).to be_valid
     end
     it "建物名がなくても購入できる" do
@@ -55,7 +58,7 @@ RSpec.describe SendingForm, type: :model do
     it '電話番号に数字以外の文字を入れないこと' do
       @sending_form.tel =  '090-123-4567'
       @sending_form.valid?
-      expect(@sending_form.errors.full_messages).to include("Tel is invalid", "Tel is too long (maximum is 11 characters)")
+      expect(@sending_form.errors.full_messages).to include("Tel is invalid")
     end
     it '電話番号に１２桁以上の数字を入れないこと' do
       @sending_form.tel =  '090123456789'
