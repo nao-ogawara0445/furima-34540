@@ -9,7 +9,7 @@ class SendingsController < ApplicationController
 
 
   def create
-    binding.pry
+
     @sending_form = SendingForm.new(sending_params)
     if @sending_form.valid?
       sending_item
@@ -34,7 +34,7 @@ class SendingsController < ApplicationController
     )
   end
   def purchase_items_sending
-    redirect_to root_path if (current_user == @item.user )|| @item.purchase 
+    redirect_to root_path if (current_user == @item.user )|| @item.purchase.present? 
     
   end
 

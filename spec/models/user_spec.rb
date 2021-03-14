@@ -110,11 +110,6 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password is invalid")
     end
-    it"tokenが空だと保存できない"
-    @user.token = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password is invalid")
-    end
     
   end
 end
