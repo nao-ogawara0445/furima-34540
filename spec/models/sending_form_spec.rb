@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe SendingForm, type: :model do
   before do
     @sending_form = FactoryBot.build(:sending_form)
-    
+    @sending_form.user_id = FactoryBot.build(:user)
+    @sending_form.item_id = FactoryBot.build(:item)
   end
 
   context '購入に成功する時' do
@@ -24,13 +25,13 @@ RSpec.describe SendingForm, type: :model do
     it '郵便番号にはハイフンで区切ることが必須であること' do
       @sending_form.postal_code =  '1234567'
       @sending_form.valid?
-      expect(@sending_form.errors.full_messages).to include()
+      expect(@sending_form.errors.full_messages).to include("Postal code is invalid")
     end
 
     it '都道府県の選択が必須であること' do
       @sending_form.shipping_id  = 1 
       @sending_form.valid?
-      expect(@sending_form.errors.full_messages).to include()
+      expect(@sending_form.errors.full_messages).to include("Shipping must be other than 1")
     end
 
     it '市区町村が必須であること' do
@@ -54,27 +55,27 @@ RSpec.describe SendingForm, type: :model do
     it '電話番号に数字以外の文字を入れないこと' do
       @sending_form.tel =  '090-123-4567'
       @sending_form.valid?
-      expect(@sending_form.errors.full_messages).to include()
+      expect(@sending_form.errors.full_messages).to include("Tel is invalid", "Tel is too long (maximum is 11 characters)")
     end
     it '電話番号に１２桁以上の数字を入れないこと' do
       @sending_form.tel =  '090123456789'
       @sending_form.valid?
-      expect(@sending_form.errors.full_messages).to include()
+      expect(@sending_form.errors.full_messages).to include("Tel is too long (maximum is 11 characters)")
     end
     it 'tokenが必須であること' do
       @sending_form.token =  ''
       @sending_form.valid?
-      expect(@sending_form.errors.full_messages).to include()
+      expect(@sending_form.errors.full_messages).to include("Token can't be blank")
     end
     it 'user_idが必須であること' do
-      @sending_form.user_id =  '090123456789'
+      @sending_form.user_id =  ''
       @sending_form.valid?
-      expect(@sending_form.errors.full_messages).to include()
+      expect(@sending_form.errors.full_messages).to include("User can't be blank")
     end
     it 'item_idが必須であること' do
-      @sending_form.item_id =  '090123456789'
+      @sending_form.item_id =  ''
       @sending_form.valid?
-      expect(@sending_form.errors.full_messages).to include()
+      expect(@sending_form.errors.full_messages).to include("Item can't be blank")
     end
   end
 end
