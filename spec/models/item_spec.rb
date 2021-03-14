@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
   before do
     
     @item = FactoryBot.build(:item)
-    binding.pry
+ 
   end
   context '出品に成功する時' do
     it "すべて記入があれば登録できる" do

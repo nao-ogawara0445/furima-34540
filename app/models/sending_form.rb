@@ -1,6 +1,6 @@
 class SendingForm
   include ActiveModel::Model
-  attr_accessor :postal_code,:shipping_id,:town,:address,:building,:tel,:purchase_id,:user_id,:item_id,:token
+  attr_accessor :postal_code,:shipping_id,:town,:address,:building,:tel,:user_id,:item_id,:token
 
   with_options presence: true do
     validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/ }
@@ -15,7 +15,7 @@ class SendingForm
   
   def save
     purchase = Purchase.create(item_id: item_id, user_id: user_id)
-    Sending.create(postal_code: postal_code, shipping_id: shipping_id, town: town, address: address, building: building,tel: tel)
+    Sending.create(postal_code: postal_code, shipping_id: shipping_id, town: town, address: address, building: building,tel: tel,purchase_id: purchase.id)
  
 
   end
