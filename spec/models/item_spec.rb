@@ -4,6 +4,7 @@ RSpec.describe User, type: :model do
   before do
     
     @item = FactoryBot.build(:item)
+ 
   end
   context '出品に成功する時' do
     it "すべて記入があれば登録できる" do
@@ -14,7 +15,6 @@ RSpec.describe User, type: :model do
 
     it '商品画像を1枚つけることが必須であること' do
       @item.image =  nil
-
       @item.valid?
       expect(@item.errors.full_messages).to include()
     end

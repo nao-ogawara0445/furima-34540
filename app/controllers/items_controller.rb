@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
   def index
     @items=Item.order("created_at DESC")
+    
   end
   def new
     @item=Item.new
@@ -42,6 +43,6 @@ class ItemsController < ApplicationController
     @item=Item.find(params[:id])
   end
   def contributor_confirmation
-    redirect_to root_path unless current_user == @item.user
+    redirect_to root_path if (current_user != @item.user) || @item.purchase.present?
   end
 end
