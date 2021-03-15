@@ -3,14 +3,14 @@ class SendingsController < ApplicationController
   before_action :item_setting
   before_action :purchase_items_sending
   def index
-    @sending_form = SendingForm.new
+    @sending_form = BuyForm.new
 
   end
 
 
   def create
 
-    @sending_form = SendingForm.new(sending_params)
+    @sending_form = BuyForm.new(sending_params)
     if @sending_form.valid?
       sending_item
       
@@ -23,7 +23,7 @@ class SendingsController < ApplicationController
   private
 
   def sending_params
-    params.require(:sending_form).permit(:postal_code,:shipping_id, :town,:address, :building,:tel).merge(user_id: current_user.id,item_id: params[:item_id],token: params[:token])
+    params.require(:buy_form).permit(:postal_code,:shipping_id, :town,:address, :building,:tel).merge(user_id: current_user.id,item_id: params[:item_id],token: params[:token])
   end
   def sending_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
