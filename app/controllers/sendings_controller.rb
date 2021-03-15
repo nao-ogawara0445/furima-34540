@@ -11,6 +11,7 @@ class SendingsController < ApplicationController
   def create
 
     @sending_form = BuyForm.new(sending_params)
+    sleep 1
     if @sending_form.valid?
       sending_item
       
